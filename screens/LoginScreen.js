@@ -1,69 +1,80 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // Lógica de login
-    // Verificar credenciais, etc.
-    // Por enquanto, vamos apenas verificar se o email e senha não estão vazios
-    if (email && password) {
-      setIsAuthenticated(true);
-      navigation.navigate('Home');
-    } else {
-      alert('Por favor, insira email e senha.');
-    }
+    // Lógica de autenticação
+    // Navegação para a próxima tela após o login bem-sucedido
+    navigation.navigate("Home");
   };
 
-  const handleCadastro = () => {
-    navigation.navigate('Cadastro');
+  const handleSignUp = () => {
+    // Navegação para a tela de cadastro
+    navigation.navigate("Cadastro");
   };
 
   return (
-    
-    <View style={[styles.container, { backgroundColor: '#FFEFD5' }]}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={setEmail}
-        value={email}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Cadastrar" onPress={handleCadastro} />
-    </View>
+    <ImageBackground
+      source={{
+        uri: "https://th.bing.com/th/id/OIG2.VLliwxyFOO72BgrDS0Mg?pid=ImgGn",
+      }}
+      style={styles.background}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          onChangeText={setEmail}
+          value={email}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry
+        />
+        <Button title="Entrar" onPress={handleLogin} />
+        <Button title="Primeiro Acesso" onPress={handleSignUp} />
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  container: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     padding: 20,
+    borderRadius: 8,
+    marginHorizontal: 20,
+    alignItems: "center",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   input: {
-    width: '100%',
+    width: "100%",
     height: 40,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
